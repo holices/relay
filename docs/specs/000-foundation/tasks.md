@@ -71,7 +71,7 @@
   - One page that parses a sample object with a contract schema and renders the result.
 - **Done when:** `pnpm --filter web dev` renders the page, and both `next build` and `typecheck` pass.
 
-### [ ] T007 · Spike verdict and cache check
+### [x] T007 · Spike verdict and cache check
 - **Refs:** plan §15 R1–R2, ADR-0004, AC-02, AC-03
 - **Steps:**
   - Confirm, or apply the fallbacks: TypeScript 6.0.x if TS 7 breaks `next build`; `tsx` if type stripping fails for a workspace package.
@@ -80,6 +80,11 @@
   - The ADR-0004 status line records "spike confirmed" or the fallback that was applied.
   - The second `pnpm check` reports every task cached.
   - After the `contracts` change, only `contracts`, `api` and `web` tasks re-run, and the `--summarize` output is noted for Verify.
+- **Evidence (2026-11-22):**
+  - **No fallback needed:** `tsc` (TS 7.0.2), `next build` (Next 16.4.6, Turbopack) and `node src/server.ts` importing `@relay/contracts` as source all work.
+  - **No changes:** second `pnpm check` → `9 cached, 9 total`, `FULL TURBO` (AC-02).
+  - **Line added to `packages/contracts/src/index.ts`:** all 9 tasks re-run (contracts + api + web, its two dependents) (AC-03).
+  - **Line added to `apps/api/src/app.ts`:** only the 3 `@relay/api` tasks re-run; `6 cached, 9 total` (AC-03).
 
 ---
 

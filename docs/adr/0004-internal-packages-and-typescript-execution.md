@@ -1,6 +1,6 @@
 # ADR-0004 — Source-only internal packages and native TypeScript execution
 
-- **Status:** Accepted (plan 000 approved 2026-11-22)
+- **Status:** Accepted (plan 000 approved 2026-11-22) · spike confirmed 2026-11-22 (T007): TypeScript 7.0.2 `tsc` and `next build` work; Node 24 type stripping runs the API and the `@relay/contracts` workspace package from source. No fallback needed.
 - **Date:** 2026-11-22
 - **Phase:** 0
 - **Serves:** FR-003, FR-007, NFR-006
