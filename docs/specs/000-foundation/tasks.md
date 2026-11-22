@@ -64,7 +64,7 @@
   - `dev` script: `node --watch src/server.ts`.
 - **Done when:** `pnpm --filter api dev` serves `curl localhost:3001/health/live` → `{"status":"ok"}`; editing the handler reloads automatically (NFR-006); `typecheck` and `lint` pass.
 
-### [ ] T006 · `apps/web` minimal *(parallel with T005)*
+### [x] T006 · `apps/web` minimal *(parallel with T005)*
 - **Refs:** ADR-0004, plan §11
 - **Steps:**
   - Next.js 16 App Router, TypeScript and `transpilePackages: ["@relay/contracts"]`.
