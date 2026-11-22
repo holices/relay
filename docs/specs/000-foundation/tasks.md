@@ -40,7 +40,7 @@
   - **`biome.json`:** formatter + linter with `noFloatingPromises` on.
 - **Done when:** `pnpm install` succeeds, and `pnpm turbo run typecheck` runs without errors (zero tasks is fine).
 
-### [ ] T003 · `packages/tsconfig`
+### [x] T003 · `packages/tsconfig`
 - **Refs:** ADR-0004, plan §2
 - **Steps:**
   - **`base.json`:** `strict`, `noUncheckedIndexedAccess`, `erasableSyntaxOnly`, `verbatimModuleSyntax`, `allowImportingTsExtensions`, `rewriteRelativeImportExtensions`, `module`/`moduleResolution: nodenext`, `target: es2024`, `noEmit`.
