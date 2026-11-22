@@ -56,7 +56,7 @@
   - Per-package `typecheck` (`tsc`), `lint` (`biome check .`) and `test` (`vitest run`) scripts.
 - **Done when:** `pnpm check` runs typecheck, lint and test for `contracts`, and all pass.
 
-### [ ] T005 · `apps/api` minimal
+### [x] T005 · `apps/api` minimal
 - **Refs:** FR-010 (partial), ADR-0004
 - **Steps:**
   - Fastify 5 with `src/app.ts` exporting `buildApp()` and `src/server.ts` calling `listen`.
