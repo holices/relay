@@ -48,7 +48,7 @@
   - **`next.json`:** extends base, with `jsx: preserve`, `module: esnext`, `moduleResolution: bundler`, `lib: dom` and the `next` plugin.
 - **Done when:** the package exists with `exports` for the three files. It is consumed in T004–T006.
 
-### [ ] T004 · `packages/contracts` skeleton
+### [x] T004 · `packages/contracts` skeleton
 - **Refs:** FR-008, plan §6
 - **Steps:**
   - `package.json` with `exports: { ".": "./src/index.ts" }`, depending only on `zod`.

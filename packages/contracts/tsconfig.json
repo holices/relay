@@ -1,0 +1,4 @@
+{
+  "extends": "@relay/tsconfig/node.json",
+  "include": ["src"]
+}
