@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Relay — Clean Technical foundations</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#3F7A5B}a:hover{color:#2C5A42}
+:focus-visible{outline:2px solid #69A987;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1560px; box-sizing: border-box; padding: 64px 72px; background: #FFFFFF; color: #24272D; font-family: 'Geist', system-ui, sans-serif; font-size: 14px; line-height: 1.45; display: flex; flex-direction: column; gap: 44px">
+
+<header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 32px; border-bottom: 1px solid #ECEDEF">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; color: #656A72">Relay design system · v0.2</span>
+<h1 style="margin: 0; font-size: 40px; font-weight: 600; letter-spacing: -0.02em">Clean Technical</h1>
+<p style="margin: 0; color: #656A72; max-width: 640px; font-size: 15px">White canvas, a very light sidebar, near-invisible borders and graphite text. Green only for positive actions. Cards only when grouping needs them.</p>
+</div>
+<span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #656A72">Geist · Geist Mono · Lucide</span>
+</header>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px">
+
+<section style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Core palette</h2>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{core}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="{{c.swatch}}"></div>
+<span style="font-size: 13px; font-weight: 500">{{c.token}}</span>
+<span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">{{c.hex}}</span>
+</div>
+</sc-for>
+</div>
+<h2 style="margin: 12px 0 0; font-size: 16px; font-weight: 600">Supporting</h2>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{support}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="{{c.swatch}}"></div>
+<span style="font-size: 13px; font-weight: 500">{{c.token}}</span>
+<span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">{{c.hex}}</span>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: #656A72">Accent #69A987 is for fills, dots and icons. Green text uses #3F7A5B so it passes 4.5:1 on white. Primary buttons are graphite.</p>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Typography</h2>
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #ECEDEF"><span style="width: 150px; flex: none; font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">Page title · 26/600</span><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Your AI workspace</span></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #ECEDEF"><span style="width: 150px; flex: none; font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">Section · 16/600</span><span style="font-size: 16px; font-weight: 600">Running now</span></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #ECEDEF"><span style="width: 150px; flex: none; font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">Body · 14–15/400</span><span style="font-size: 15px">Payments need a human approver.</span></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #ECEDEF"><span style="width: 150px; flex: none; font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">Label · 13/400</span><span style="font-size: 13px; color: #656A72">Needs your approval</span></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0"><span style="width: 150px; flex: none; font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">Mono · 12/400</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px">tr_8f21a9 · 2,840 tokens · $0.012</span></div>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Status</h2>
+<div style="display: flex; gap: 24px; flex-wrap: wrap">
+<sc-for list="{{states}}" as="s" hint-placeholder-count="6">
+<span style="{{s.style}}"><span style="{{s.dot}}"></span>{{s.label}}</span>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: #656A72">A dot plus a text label. No filled badges: color is never the only signal.</p>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Radius and elevation</h2>
+<div style="display: flex; gap: 28px; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="width: 72px; height: 56px; border: 1px solid #E1E2E5; border-radius: 6px"></div><span style="font-family: 'Geist Mono', monospace; font-size: 12px">6px · tabs, small</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="width: 72px; height: 56px; border: 1px solid #E1E2E5; border-radius: 8px"></div><span style="font-family: 'Geist Mono', monospace; font-size: 12px">8px · buttons, inputs</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="width: 72px; height: 56px; border: 1px solid #E1E2E5; border-radius: 10px"></div><span style="font-family: 'Geist Mono', monospace; font-size: 12px">10px · groups, cards</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><div style="width: 72px; height: 56px; background: #FFFFFF; border-radius: 8px; box-shadow: 0 1px 2px rgba(36,39,45,0.08)"></div><span style="font-family: 'Geist Mono', monospace; font-size: 12px">shadow-xs · selected</span></div>
+</div>
+</section>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 20px; padding-top: 36px; border-top: 1px solid #ECEDEF">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Components</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px">
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; color: #656A72">Buttons</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" style="height: 36px; padding: 0 14px; background: #24272D; border: 1px solid #24272D; border-radius: 8px; color: #FFFFFF; font: inherit; font-weight: 500">Primary</button>
+<button type="button" style="height: 36px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; font: inherit">Secondary</button>
+<button type="button" style="height: 36px; padding: 0 14px; background: #69A987; border: 1px solid #69A987; border-radius: 8px; color: #24272D; font: inherit; font-weight: 500">Positive</button>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" style="height: 36px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #C2414B; font: inherit; font-weight: 500">Archive</button>
+<button type="button" style="height: 36px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; font: inherit; outline: 2px solid #69A987; outline-offset: 2px">Focused</button>
+<button type="button" disabled style="height: 36px; padding: 0 14px; background: #F5F5F6; border: 1px solid #ECEDEF; border-radius: 8px; color: #A3A7AE; font: inherit">Disabled</button>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; color: #656A72">Fields</span>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #656A72">Name
+<input type="text" value="Finance Assistant" style="height: 40px; box-sizing: border-box; padding: 0 12px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; font: inherit; font-size: 15px">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #656A72">Output token limit
+<input type="text" value="200000000" aria-invalid="true" style="height: 40px; box-sizing: border-box; padding: 0 12px; background: #FFFFFF; border: 1px solid #C2414B; border-radius: 8px; color: #24272D; font-family: 'Geist Mono', monospace; font-size: 13px">
+<span style="font-size: 12px; color: #C2414B">Exceeds the model's limit of 64,000.</span>
+</label>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; color: #656A72">Grouped list</span>
+<div style="background: #FFFFFF; border: 1px solid #E6E7EA; border-radius: 10px; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #ECEDEF"><span style="flex: 1; font-weight: 500">Tools</span><span style="font-size: 13px; color: #656A72">4</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#656A72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></div>
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px"><span style="flex: 1; font-weight: 500">Schedule</span><span style="font-size: 13px; color: #656A72">Mon–Fri, 8:00–19:00</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#656A72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; color: #656A72">Messages</span>
+<div style="align-self: flex-end; padding: 10px 16px; background: #F0F1F2; border-radius: 18px">Looks good</div>
+<div style="align-self: flex-start; padding: 10px 16px; background: #F0F1F2; border-radius: 18px">All set. Here's how I'll work:</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; color: #656A72">Key–value card</span>
+<div style="border: 1px solid #E6E7EA; border-radius: 10px; overflow: hidden">
+<div style="display: grid; grid-template-columns: 100px 1fr; padding: 11px 14px; border-bottom: 1px solid #ECEDEF"><span style="color: #656A72">Tool</span><span style="font-family: 'Geist Mono', monospace; font-size: 13px">create_payment</span></div>
+<div style="display: grid; grid-template-columns: 100px 1fr; padding: 11px 14px"><span style="color: #656A72">Asks first</span><span>Before any payment above €1,000</span></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; color: #656A72">Empty state</span>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 24px; text-align: center; background: #F5F5F6; border-radius: 10px">
+<span style="font-weight: 500">No traces in this period</span>
+<span style="font-size: 13px; color: #656A72">Traces appear once an agent runs.</span>
+<button type="button" style="margin-top: 6px; height: 32px; padding: 0 12px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; font: inherit; font-size: 13px">Clear filters</button>
+</div>
+</div>
+
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var sw = function (hex) { return 'height:60px;border-radius:8px;border:1px solid #E1E2E5;background:' + hex; };
+    var map = function (list) { return list.map(function (c) { return { token: c[0], hex: c[1], swatch: sw(c[1]) }; }); };
+    var core = map([['Canvas', '#FFFFFF'], ['Sidebar', '#F5F5F6'], ['Surface', '#EBECEE'], ['Text', '#24272D'], ['Accent', '#69A987']]);
+    var support = map([['Border', '#E6E7EA'], ['Divider', '#ECEDEF'], ['Muted text', '#656A72'], ['Accent text', '#3F7A5B'], ['Bubble', '#F0F1F2']]);
+    var states = [['Active', '#2E7D57', '#69A987'], ['Running', '#2F6FC4', '#2F6FC4'], ['Waiting for approval', '#9A5F0C', '#D89A3C'], ['Failed', '#C2414B', '#C2414B'], ['Draft', '#656A72', '#A3A7AE'], ['Paused', '#9A5F0C', '#D89A3C']].map(function (s) {
+      return { label: s[0], style: 'display:inline-flex;align-items:center;gap:7px;font-size:14px;color:' + s[1], dot: 'width:7px;height:7px;border-radius:999px;background:' + s[2] };
+    });
+    return { core: core, support: support, states: states };
+  }
+}
+</script>
+</body>
+</html>

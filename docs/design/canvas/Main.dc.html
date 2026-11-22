@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Relay — Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#3F7A5B}a:hover{color:#2C5A42}
+:focus-visible{outline:2px solid #69A987;outline-offset:2px}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 1000px; background: #FFFFFF; color: #24272D; font-family: 'Geist', system-ui, sans-serif; font-size: 14px; line-height: 1.45">
+<dc-import name="Sidebar" active="home" hint-size="248px,1000px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 48px 40px 64px; display: flex; justify-content: center">
+<div style="width: 100%; max-width: 880px; display: flex; flex-direction: column; gap: 36px">
+
+<header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Your AI workspace</h1>
+<p style="margin: 0; color: #656A72">Monitor, build and improve your agents.</p>
+</div>
+<nav aria-label="Quick actions" style="display: flex; gap: 8px; flex-wrap: wrap">
+<a href="#" style="height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; text-decoration: none; font-size: 13px">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h8M7 5v6h8M11 11v6h9"></path></svg>Traces</a>
+<a href="#" style="height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; text-decoration: none; font-size: 13px">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10"></path></svg>Run evaluation</a>
+<a href="#" style="height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #24272D; border: 1px solid #24272D; border-radius: 8px; color: #FFFFFF; text-decoration: none; font-size: 13px; font-weight: 500">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>New agent</a>
+</nav>
+</header>
+
+<section aria-label="Today" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); border: 1px solid #E6E7EA; border-radius: 10px">
+<a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; color: #24272D; text-decoration: none">
+<span style="font-size: 13px; color: #656A72">Runs today</span>
+<span style="font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums">128</span>
+</a>
+<a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border-left: 1px solid #ECEDEF; color: #24272D; text-decoration: none">
+<span style="font-size: 13px; color: #656A72">Success rate</span>
+<span style="font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums">96.8%</span>
+</a>
+<a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border-left: 1px solid #ECEDEF; color: #24272D; text-decoration: none">
+<span style="font-size: 13px; color: #656A72">Avg. latency</span>
+<span style="font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums">2.4s</span>
+</a>
+</section>
+
+<section aria-labelledby="att-h" style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h2 id="att-h" style="margin: 0; font-size: 16px; font-weight: 600">Needs attention <span style="font-weight: 400; color: #656A72">· 2</span></h2>
+</div>
+<div style="border: 1px solid #E6E7EA; border-radius: 10px; overflow: hidden">
+<sc-for list="{{attention}}" as="n" hint-placeholder-count="2">
+<div style="{{n.rowStyle}}">
+<dc-import name="AgentIcon" agent="{{n.key}}" mood="{{n.mood}}" size="32" hint-size="32px,32px"></dc-import>
+<div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<span style="font-weight: 600">{{n.name}}</span>
+<span style="{{n.badgeStyle}}"><span style="{{n.dotStyle}}"></span>{{n.badge}}</span>
+</span>
+<span style="font-size: 13px; color: #656A72">{{n.detail}} · {{n.time}}</span>
+</div>
+<a href="{{n.href}}" style="font-size: 13px; font-weight: 500; text-decoration: none; white-space: nowrap">{{n.action}} →</a>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="exec-h" style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<h2 id="exec-h" style="margin: 0; font-size: 16px; font-weight: 600">Recent executions</h2>
+<a href="#" style="font-size: 13px; text-decoration: none">All traces →</a>
+</div>
+<div style="border: 1px solid #E6E7EA; border-radius: 10px; overflow-x: auto">
+<table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 14px">
+<thead>
+<tr style="text-align: left; font-size: 12px; color: #656A72">
+<th scope="col" style="padding: 10px 16px; font-weight: 500; border-bottom: 1px solid #E6E7EA">Agent</th>
+<th scope="col" style="padding: 10px 16px; font-weight: 500; border-bottom: 1px solid #E6E7EA">Trace</th>
+<th scope="col" style="padding: 10px 16px; font-weight: 500; border-bottom: 1px solid #E6E7EA; text-align: right">Duration</th>
+<th scope="col" style="padding: 10px 16px; font-weight: 500; border-bottom: 1px solid #E6E7EA">When</th>
+<th scope="col" style="padding: 10px 16px; font-weight: 500; border-bottom: 1px solid #E6E7EA">Status</th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{runs}}" as="r" hint-placeholder-count="6">
+<tr>
+<td style="{{r.cell}}"><span style="display: flex; align-items: center; gap: 10px"><dc-import name="AgentIcon" agent="{{r.key}}" mood="{{r.mood}}" size="24" hint-size="24px,24px"></dc-import><span style="font-weight: 500">{{r.name}}</span></span></td>
+<td style="{{r.cell}}"><a href="#" style="font-family: 'Geist Mono', monospace; font-size: 12px; text-decoration: none">{{r.trace}}</a></td>
+<td style="{{r.cell}}; text-align: right; font-family: 'Geist Mono', monospace; font-size: 12px; color: #656A72">{{r.dur}}</td>
+<td style="{{r.cell}}; color: #656A72">{{r.when}}</td>
+<td style="{{r.cell}}"><span style="{{r.statusStyle}}"><span style="{{r.dotStyle}}"></span>{{r.status}}</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var T = {
+      failed: ['#C2414B', '#C2414B', 'rgba(194,65,75,0.08)'],
+      approval: ['#9A5F0C', '#D89A3C', 'rgba(216,154,60,0.12)'],
+      completed: ['#2E7D57', '#69A987'],
+      running: ['#2F6FC4', '#2F6FC4']
+    };
+    var attention = [
+      { key: 'invoice', mood: 'error', name: 'Invoice Intake', badge: 'Failed', t: 'failed', detail: 'Tool call failed · Parse PDF', time: '2 minutes ago', action: 'Open trace', href: '#' },
+      { key: 'finance', mood: 'awake', name: 'Finance Assistant', badge: 'Approval', t: 'approval', detail: 'Payment awaiting human approval', time: '5 minutes ago', action: 'Review execution', href: 'AgentWorkspace.dc.html' }
+    ].map(function (n, i, all) {
+      var t = T[n.t];
+      return Object.assign({}, n, {
+        rowStyle: 'display:flex;align-items:center;gap:14px;padding:14px 16px;flex-wrap:wrap;' + (i < all.length - 1 ? 'border-bottom:1px solid #ECEDEF' : ''),
+        badgeStyle: 'display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 7px;border-radius:6px;font-size:12px;font-weight:500;color:' + t[0] + ';background:' + t[2],
+        dotStyle: 'width:6px;height:6px;border-radius:999px;background:' + t[1]
+      });
+    });
+    var runs = [
+      { key: 'support', name: 'Support Triage', trace: 'tr_c41e07', dur: '1.8s', when: '12s ago', s: 'running', status: 'Running' },
+      { key: 'support', name: 'Support Triage', trace: 'tr_c41d92', dur: '2.1s', when: '40s ago', s: 'completed', status: 'Completed' },
+      { key: 'invoice', name: 'Invoice Intake', trace: 'tr_77c0e2', dur: '30.0s', when: '2m ago', s: 'failed', status: 'Failed', mood: 'error' },
+      { key: 'finance', name: 'Finance Assistant', trace: 'tr_8f21a9', dur: '3.2s', when: '5m ago', s: 'approval', status: 'Awaiting approval' },
+      { key: 'contracts', name: 'Contract Reviewer', trace: 'tr_6b02fd', dur: '4.6s', when: '5m ago', s: 'completed', status: 'Completed' },
+      { key: 'itdesk', name: 'IT Access Desk', trace: 'tr_19aa3c', dur: '1.1s', when: '8m ago', s: 'completed', status: 'Completed' }
+    ].map(function (r, i, all) {
+      var t = T[r.s];
+      return Object.assign({}, r, {
+        mood: r.mood || 'awake',
+        cell: 'padding:11px 16px;vertical-align:middle' + (i < all.length - 1 ? ';border-bottom:1px solid #ECEDEF' : ''),
+        statusStyle: 'display:inline-flex;align-items:center;gap:6px;font-size:13px;white-space:nowrap;color:' + t[0],
+        dotStyle: 'width:6px;height:6px;border-radius:999px;background:' + t[1]
+      });
+    });
+    return { attention: attention, runs: runs };
+  }
+}
+</script>
+</body>
+</html>

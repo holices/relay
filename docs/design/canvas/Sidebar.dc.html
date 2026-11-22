@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Relay — Sidebar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<nav aria-label="Main" style="width: 248px; min-height: 1000px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F6; border-right: 1px solid #E6E7EA; color: #24272D; font-family: 'Geist', system-ui, sans-serif; font-size: 14px">
+
+<div style="padding: 14px 14px 10px; display: flex; align-items: center; justify-content: space-between">
+<button type="button" aria-label="Switch workspace, current: Acme Corporation" style="display: flex; align-items: center; gap: 8px; padding: 4px 6px; margin-left: -6px; background: transparent; border: 0; border-radius: 6px; color: #24272D; font: inherit; font-weight: 600; cursor: pointer">
+<span aria-hidden="true" style="width: 22px; height: 22px; display: grid; place-items: center; border-radius: 6px; background: #FFFFFF; border: 1px solid #E6E7EA; font-size: 12px; font-weight: 600">A</span>
+Acme Corporation
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#656A72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15l5 5 5-5M7 9l5-5 5 5"></path></svg>
+</button>
+<button type="button" aria-label="Collapse sidebar" style="width: 28px; height: 28px; display: grid; place-items: center; background: transparent; border: 0; border-radius: 6px; color: #656A72; cursor: pointer">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M9 4v16"></path></svg>
+</button>
+</div>
+
+<div style="padding: 0 14px 8px">
+<button type="button" style="width: 100%; height: 36px; display: flex; align-items: center; gap: 8px; padding: 0 10px; background: #EBECEE; border: 1px solid #E1E2E5; border-radius: 8px; color: #656A72; font: inherit; font-size: 14px; text-align: left; cursor: pointer">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+<span style="flex: 1">Search</span>
+<kbd style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">⌘K</kbd>
+</button>
+</div>
+
+<div style="flex: 1; min-height: 0; padding: 6px 0 12px; display: flex; flex-direction: column; gap: 20px">
+
+<div style="display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{workspace}}" as="it" hint-placeholder-count="4">
+<div style="position: relative; padding: 0 14px">
+<span aria-hidden="true" style="{{it.barStyle}}"></span>
+<a href="{{it.href}}" aria-current="{{it.current}}" style="{{it.style}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.icon}}"></path></svg>
+<span style="flex: 1">{{it.label}}</span>
+<span style="font-size: 13px; color: #656A72; font-variant-numeric: tabular-nums">{{it.count}}</span>
+</a>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 18px 4px 24px">
+<span style="font-size: 13px; color: #656A72">Drafts</span>
+<button type="button" aria-label="New draft agent" style="width: 24px; height: 24px; display: grid; place-items: center; background: transparent; border: 0; border-radius: 6px; color: #656A72; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+</div>
+<div style="position: relative; padding: 0 14px">
+<span aria-hidden="true" style="{{draftBar}}"></span>
+<a href="#" aria-current="{{draftCurrent}}" style="{{draftStyle}}">
+<span aria-hidden="true" style="width: 20px; height: 20px; flex: none; box-sizing: border-box; display: grid; place-items: center; border: 1.5px dashed #A3A7AE; border-radius: 6px; color: #656A72"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+<span style="flex: 1">New agent</span>
+</a>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px; min-height: 0">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 0 18px 4px 24px">
+<span style="font-size: 13px; color: #656A72">Agents</span>
+<button type="button" aria-label="Create agent" style="width: 24px; height: 24px; display: grid; place-items: center; background: transparent; border: 0; border-radius: 6px; color: #656A72; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+</div>
+<div style="max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{agents}}" as="ag" hint-placeholder-count="7">
+<div style="position: relative; padding: 0 14px">
+<span aria-hidden="true" style="{{ag.barStyle}}"></span>
+<a href="{{ag.href}}" aria-current="{{ag.current}}" style="{{ag.style}}">
+<dc-import name="AgentIcon" agent="{{ag.key}}" mood="{{ag.mood}}" size="22" hint-size="22px,22px"></dc-import>
+<span style="flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ag.name}}</span>
+<span aria-hidden="true" style="{{ag.dotStyle}}"></span>
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{ag.statusText}}</span>
+</a>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="padding: 0 24px 4px; font-size: 13px; color: #656A72">Engineering</span>
+<sc-for list="{{engineering}}" as="it" hint-placeholder-count="4">
+<div style="position: relative; padding: 0 14px">
+<span aria-hidden="true" style="{{it.barStyle}}"></span>
+<a href="{{it.href}}" title="{{it.hint}}" aria-current="{{it.current}}" style="{{it.style}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{it.icon}}"></path></svg>
+<span style="flex: 1">{{it.label}}</span>
+</a>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="padding: 10px 14px 16px; border-top: 1px solid #E6E7EA; display: flex; flex-direction: column; gap: 4px">
+<button type="button" aria-label="Account menu for Ana Moreira" style="display: flex; align-items: center; gap: 12px; width: 100%; padding: 6px; background: transparent; border: 0; border-radius: 8px; color: #24272D; font: inherit; text-align: left; cursor: pointer">
+<span aria-hidden="true" style="width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 999px; background: #FFFFFF; border: 2px solid #24272D; font-size: 11px; font-weight: 600">AM</span>
+<span style="flex: 1; font-weight: 500">Ana Moreira</span>
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#656A72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15l5 5 5-5M7 9l5-5 5 5"></path></svg>
+</button>
+</div>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["home","activity","workflows","integrations","draft-new","agent-finance","agent-support","agent-contracts","agent-invoice","agent-itdesk","agent-hr","agent-leads","traces","evaluations","knowledge","analytics","settings"],"default":"home"},"$preview":{"width":248,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var active = this.props.active ?? 'home';
+    var I = {
+      home: 'M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
+      activity: 'M22 12h-4l-3 9L9 3l-3 9H2',
+      workflows: 'M3 3h6v6H3zM15 15h6v6h-6zM6 9v3a3 3 0 0 0 3 3h6',
+      integrations: 'M12 22v-5M9 8V2M15 8V2M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z',
+      traces: 'M3 5h8M7 5v6h8M11 11v6h9',
+      evaluations: 'M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10',
+      knowledge: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5',
+      analytics: 'M3 3v18h18M8 17v-5M13 17V8M18 17v-9'
+    };
+    var bar = function (on) { return on ? 'position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 2px 2px 0;background:#24272D' : 'display:none'; };
+    var rowStyle = function (on, gap) {
+      return 'display:flex;align-items:center;gap:' + (gap || 12) + 'px;height:36px;padding:0 10px;border-radius:8px;text-decoration:none;font-size:14px;color:#24272D;' + (on ? 'background:#EBECEE;font-weight:600' : '');
+    };
+    var nav = function (id, label, href, count, hint) {
+      var on = id === active;
+      return { label: label, href: href || '#', icon: I[id], count: count || '', hint: hint || label, current: on ? 'page' : 'false', barStyle: bar(on), style: rowStyle(on) };
+    };
+    var dots = { active: ['#69A987', 'Active'], running: ['#2F6FC4', 'Running'], waiting: ['#D89A3C', 'Waiting for approval'], error: ['#C2414B', 'Error'], paused: ['#B4B8BE', 'Paused'] };
+    var agents = [
+      { id: 'agent-finance', key: 'finance', name: 'Finance Assistant', state: 'waiting', href: 'AgentWorkspace.dc.html' },
+      { id: 'agent-support', key: 'support', name: 'Support Triage', state: 'running' },
+      { id: 'agent-contracts', key: 'contracts', name: 'Contract Reviewer', state: 'running' },
+      { id: 'agent-invoice', key: 'invoice', name: 'Invoice Intake', state: 'error' },
+      { id: 'agent-itdesk', key: 'itdesk', name: 'IT Access Desk', state: 'active' },
+      { id: 'agent-hr', key: 'hr', name: 'HR Assistant', state: 'active' },
+      { id: 'agent-leads', key: 'leads', name: 'Lead Qualifier', state: 'paused' }
+    ].map(function (a) {
+      var on = a.id === active;
+      var d = dots[a.state];
+      return {
+        name: a.name, key: a.key, href: a.href || '#', current: on ? 'page' : 'false',
+        mood: a.state === 'error' ? 'error' : (a.state === 'paused' ? 'sleep' : 'awake'),
+        statusText: ', ' + d[1],
+        barStyle: bar(on),
+        style: rowStyle(on, 10),
+        dotStyle: 'width:6px;height:6px;flex:none;border-radius:999px;background:' + d[0]
+      };
+    });
+    var draftOn = active === 'draft-new';
+    return {
+      workspace: [nav('home', 'Home', 'Main.dc.html'), nav('activity', 'Activity', null, '3'), nav('workflows', 'Workflows'), nav('integrations', 'Integrations')],
+      agents: agents,
+      engineering: [
+        nav('traces', 'Traces', null, null, 'Spans, LLM and tool calls, latency, tokens, costs and errors'),
+        nav('evaluations', 'Evaluations', null, null, 'Datasets, experiments, scorers and regressions'),
+        nav('knowledge', 'Knowledge', null, null, 'Ingestion, chunking, embeddings, retrieval and RAG playground'),
+        nav('analytics', 'Analytics', null, null, 'Quality, cost, latency, model usage and trends')
+      ],
+      draftCurrent: draftOn ? 'page' : 'false', draftBar: bar(draftOn), draftStyle: rowStyle(draftOn, 10) + (draftOn ? '' : ';color:#656A72')
+    };
+  }
+}
+</script>
+</body>
+</html>

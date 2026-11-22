@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Relay — Finance Assistant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#3F7A5B}a:hover{color:#2C5A42}
+:focus-visible{outline:2px solid #69A987;outline-offset:2px}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 1000px; background: #FFFFFF; color: #24272D; font-family: 'Geist', system-ui, sans-serif; font-size: 14px; line-height: 1.5">
+<dc-import name="Sidebar" active="agent-finance" hint-size="248px,1000px"></dc-import>
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-wrap: wrap; align-items: stretch">
+
+<section aria-label="Conversation" style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column">
+<header style="min-height: 60px; box-sizing: border-box; padding: 10px 16px 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid #ECEDEF">
+<div style="display: flex; align-items: center; gap: 12px; min-width: 0">
+<dc-import name="AgentIcon" agent="finance" mood="awake" size="32" hint-size="32px,32px"></dc-import>
+<div style="display: flex; flex-direction: column; line-height: 1.3; min-width: 0">
+<h1 style="margin: 0; font-size: 16px; font-weight: 600">Finance Assistant</h1>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #656A72">
+<span style="display: inline-flex; align-items: center; gap: 5px; color: #9A5F0C"><span style="width: 6px; height: 6px; border-radius: 999px; background: #D89A3C"></span>Waiting for approval</span>· v7 published
+</span>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 2px">
+<button type="button" aria-label="Activity" aria-pressed="{{actPressed}}" onClick="{{toggleActivity}}" style="{{actBtn}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></button>
+<button type="button" aria-label="Agent details and settings" aria-pressed="{{detPressed}}" onClick="{{toggleDetails}}" style="{{detBtn}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg></button>
+<button type="button" aria-label="More actions" style="width: 34px; height: 34px; display: grid; place-items: center; background: transparent; border: 0; border-radius: 8px; color: #24272D; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="5" cy="12" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle></svg></button>
+</div>
+</header>
+
+<div style="flex: 1; padding: 28px 24px; display: flex; flex-direction: column; gap: 24px; max-width: 720px; box-sizing: border-box; width: 100%; margin: 0 auto">
+<div style="align-self: flex-end; max-width: 80%; padding: 10px 16px; background: #F0F1F2; border-radius: 18px; font-size: 15px">Pay the Acme Supplies invoice that's due this week.</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 560px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px">
+<dc-import name="AgentIcon" agent="finance" mood="awake" size="20" hint-size="20px,20px"></dc-import>
+<span style="font-weight: 600">Finance Assistant</span><span style="color: #656A72">· 00:14</span>
+</div>
+<div style="padding: 12px 16px; background: #F0F1F2; border-radius: 18px; display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+<p style="margin: 0">I found <strong style="font-weight: 600">INV-2026-0042</strong> from Acme Supplies, due 26 November. It matches purchase order PO-7781 and its goods receipt.</p>
+<div style="background: #FFFFFF; border-radius: 10px; padding: 4px 14px">
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ECEDEF"><span>Office chairs, 12 units</span><span style="font-variant-numeric: tabular-nums">€3,960.00</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ECEDEF"><span>Delivery and assembly</span><span style="font-variant-numeric: tabular-nums">€890.00</span></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; font-weight: 600"><span>Total</span><span style="font-variant-numeric: tabular-nums">€4,850.00</span></div>
+</div>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #656A72"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#69A987" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Amount and goods receipt match the purchase order.</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 560px">
+<div style="padding: 10px 16px; align-self: flex-start; background: #F0F1F2; border-radius: 18px; font-size: 15px">Payments need a human approver, so here is the request:</div>
+<div style="border: 1px solid #E6E7EA; border-radius: 10px; overflow: hidden">
+<div style="display: grid; grid-template-columns: 110px 1fr; padding: 12px 14px; border-bottom: 1px solid #ECEDEF"><span style="color: #656A72">Action</span><span style="font-weight: 500">Invoice payment</span></div>
+<div style="display: grid; grid-template-columns: 110px 1fr; padding: 12px 14px; border-bottom: 1px solid #ECEDEF"><span style="color: #656A72">Amount</span><span style="font-variant-numeric: tabular-nums">€4,850.00 to Acme Supplies</span></div>
+<div style="display: grid; grid-template-columns: 110px 1fr; padding: 12px 14px; border-bottom: 1px solid #ECEDEF"><span style="color: #656A72">Tool</span><span style="font-family: 'Geist Mono', monospace; font-size: 13px">create_payment</span></div>
+<div style="display: grid; grid-template-columns: 110px 1fr; padding: 12px 14px; border-bottom: 1px solid #ECEDEF"><span style="color: #656A72">Policy</span><span>Payments above €1,000 need approval</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; flex-wrap: wrap">
+<span style="font-size: 13px; color: #656A72">Nothing is paid until someone approves.</span>
+<div style="display: flex; gap: 8px">
+<button type="button" style="height: 34px; padding: 0 14px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; font: inherit; cursor: pointer">Reject</button>
+<button type="button" style="height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 14px; background: #24272D; border: 1px solid #24272D; border-radius: 8px; color: #FFFFFF; font: inherit; font-weight: 500; cursor: pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Approve payment</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div style="padding: 0 24px 24px; max-width: 720px; box-sizing: border-box; width: 100%; margin: 0 auto">
+<label style="display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 8px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 14px; box-shadow: 0 1px 2px rgba(36,39,45,0.04)">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Message Finance Assistant</span>
+<button type="button" aria-label="Attach file" style="width: 32px; height: 32px; flex: none; display: grid; place-items: center; background: #F5F5F6; border: 0; border-radius: 999px; color: #656A72; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.1l-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"></path></svg></button>
+<input type="text" placeholder="Message Finance Assistant" style="flex: 1; min-width: 0; height: 32px; background: transparent; border: 0; color: #24272D; font: inherit; font-size: 15px">
+<button type="button" aria-label="Voice input" style="width: 32px; height: 32px; flex: none; display: grid; place-items: center; background: #F5F5F6; border: 0; border-radius: 999px; color: #656A72; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v5"></path></svg></button>
+<button type="button" aria-label="Send" style="width: 32px; height: 32px; flex: none; display: grid; place-items: center; background: #24272D; border: 0; border-radius: 999px; color: #FFFFFF; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+</label>
+</div>
+</section>
+
+<sc-if value="{{showDetails}}" hint-placeholder-val="{{true}}">
+<aside aria-label="Agent details" style="flex: 0 1 360px; min-width: 300px; box-sizing: border-box; background: #F5F5F6; border-left: 1px solid #E6E7EA; display: flex; flex-direction: column">
+
+<sc-if value="{{isRoot}}" hint-placeholder-val="{{true}}">
+<div style="flex: 1; padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: flex-end; margin-bottom: -8px">
+<button type="button" aria-label="Close details" onClick="{{toggleDetails}}" style="width: 28px; height: 28px; display: grid; place-items: center; background: transparent; border: 0; border-radius: 6px; color: #656A72; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+<span style="position: relative; display: inline-block">
+<dc-import name="AgentIcon" agent="finance" mood="awake" size="60" hint-size="60px,60px"></dc-import>
+<button type="button" aria-label="Change icon" style="position: absolute; right: -4px; bottom: -2px; width: 22px; height: 22px; display: grid; place-items: center; padding: 0; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 999px; color: #24272D; cursor: pointer"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg></button>
+</span>
+<span style="font-size: 12px; color: #3F434A; padding: 1px 8px; background: #EBECEE; border-radius: 6px">v7 · Published</span>
+</div>
+
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #656A72">Name
+<input type="text" value="Finance Assistant" style="height: 40px; box-sizing: border-box; padding: 0 12px; background: #FFFFFF; border: 1px solid #E6E7EA; border-radius: 8px; color: #24272D; font: inherit; font-size: 15px">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #656A72">What it does
+<input type="text" value="Pays supplier invoices and keeps payables tidy" style="height: 40px; box-sizing: border-box; padding: 0 12px; background: #FFFFFF; border: 1px solid #E6E7EA; border-radius: 8px; color: #24272D; font: inherit; font-size: 15px">
+</label>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; color: #656A72">{{g.label}}</span>
+<div style="background: #FFFFFF; border: 1px solid #E6E7EA; border-radius: 10px; overflow: hidden">
+<sc-for list="{{g.rows}}" as="r" hint-placeholder-count="2">
+<button type="button" onClick="{{r.open}}" style="{{r.style}}">
+<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.icon}}"></path></svg>
+<span style="flex: 1; text-align: left; font-weight: 500">{{r.label}}</span>
+<span style="{{r.valueStyle}}">{{r.value}}</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#656A72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{isTools}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" aria-label="Back to details" onClick="{{back}}" style="width: 30px; height: 30px; display: grid; place-items: center; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<h2 style="margin: 0; flex: 1; font-size: 16px; font-weight: 600">Tools</h2>
+<button type="button" style="height: 30px; padding: 0 10px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; font: inherit; font-size: 13px; cursor: pointer">Add</button>
+</div>
+<p style="margin: 0; font-size: 13px; color: #656A72">Through SAP S/4 — production. Write tools that move money should ask you first.</p>
+<div style="background: #FFFFFF; border: 1px solid #E6E7EA; border-radius: 10px; overflow: hidden">
+<sc-for list="{{tools}}" as="t" hint-placeholder-count="5">
+<div style="{{t.rowStyle}}">
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="flex: 1; min-width: 0; font-family: 'Geist Mono', monospace; font-size: 13px; font-weight: 500; overflow: hidden; text-overflow: ellipsis">{{t.name}}</span>
+<button type="button" role="switch" aria-checked="{{t.onAttr}}" aria-label="{{t.onLabel}}" onClick="{{t.toggleOn}}" style="{{t.onTrack}}"><span style="{{t.knob}}"></span></button>
+</div>
+<span style="font-size: 13px; color: #656A72">{{t.desc}}</span>
+<sc-if value="{{t.isWrite}}" hint-placeholder-val="{{false}}">
+<label style="display: flex; align-items: center; gap: 8px; font-size: 13px">
+<button type="button" role="switch" aria-checked="{{t.apprAttr}}" aria-label="{{t.apprLabel}}" onClick="{{t.toggleAppr}}" style="{{t.apprTrack}}"><span style="{{t.knob}}"></span></button>
+Asks you before running
+</label>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{dirty}}" hint-placeholder-val="{{false}}">
+<div style="position: sticky; bottom: 0; padding: 12px 20px; background: #FFFFFF; border-top: 1px solid #E6E7EA; display: flex; align-items: center; gap: 8px">
+<span style="flex: 1; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #9A5F0C"><span style="width: 6px; height: 6px; border-radius: 999px; background: #D89A3C"></span>Unsaved changes</span>
+<button type="button" onClick="{{discard}}" style="height: 32px; padding: 0 12px; background: transparent; border: 0; color: #24272D; font: inherit; font-size: 13px; cursor: pointer">Discard</button>
+<button type="button" style="height: 32px; padding: 0 12px; background: #24272D; border: 1px solid #24272D; border-radius: 8px; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer">Publish v8</button>
+</div>
+</sc-if>
+</aside>
+</sc-if>
+
+<sc-if value="{{showActivity}}" hint-placeholder-val="{{false}}">
+<aside aria-label="Activity" style="flex: 0 1 360px; min-width: 300px; box-sizing: border-box; padding: 16px 20px 20px; background: #F5F5F6; border-left: 1px solid #E6E7EA; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h2 style="margin: 0; font-size: 16px; font-weight: 600">Activity</h2>
+<button type="button" aria-label="Close activity" onClick="{{toggleActivity}}" style="width: 28px; height: 28px; display: grid; place-items: center; background: transparent; border: 0; border-radius: 6px; color: #656A72; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: #FFFFFF; border: 1px solid #E6E7EA; border-radius: 10px">
+<div style="padding: 10px 14px; border-right: 1px solid #ECEDEF; border-bottom: 1px solid #ECEDEF"><div style="font-size: 12px; color: #656A72">Status</div><div style="font-size: 13px; font-weight: 500; color: #9A5F0C">Waiting for approval</div></div>
+<div style="padding: 10px 14px; border-bottom: 1px solid #ECEDEF"><div style="font-size: 12px; color: #656A72">Trace</div><a href="#" style="font-family: 'Geist Mono', monospace; font-size: 13px; text-decoration: none">tr_8f21a9</a></div>
+<div style="padding: 10px 14px; border-right: 1px solid #ECEDEF"><div style="font-size: 12px; color: #656A72">Duration · Tokens</div><div style="font-family: 'Geist Mono', monospace; font-size: 13px">3.2s · 2,840</div></div>
+<div style="padding: 10px 14px"><div style="font-size: 12px; color: #656A72">Cost</div><div style="font-family: 'Geist Mono', monospace; font-size: 13px">$0.012</div></div>
+</div>
+<ol style="list-style: none; margin: 0; padding: 0; background: #FFFFFF; border: 1px solid #E6E7EA; border-radius: 10px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+<li style="{{s.rowStyle}}">
+<span aria-hidden="true" style="{{s.markStyle}}"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="{{s.icon}}"></path></svg></span>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><span style="{{s.nameStyle}}">{{s.name}}</span><span style="font-family: 'Geist Mono', monospace; font-size: 11px; color: #656A72">{{s.dur}}</span></div>
+<span style="{{s.statusStyle}}">{{s.status}}</span>
+</div>
+</li>
+</sc-for>
+</ol>
+<p style="margin: 0; font-size: 12px; color: #656A72">Shows actions, arguments and results authorised for inspection. Model reasoning is not displayed.</p>
+</aside>
+</sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"panel":{"editor":"enum","options":["details","activity","none"],"default":"details"},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.saved = [[true, false], [true, false], [true, false], [true, true], [false, true]];
+    this.state = {
+      panel: null, view: 'root',
+      tools: [
+        { name: 'search_invoices', desc: 'Find invoices by vendor or due date.', write: false, on: true, appr: false },
+        { name: 'match_purchase_order', desc: 'Check an invoice against its PO.', write: false, on: true, appr: false },
+        { name: 'get_vendor', desc: 'Look up vendor details on file.', write: false, on: true, appr: false },
+        { name: 'create_payment', desc: 'Schedule a payment for an invoice.', write: true, on: true, appr: true },
+        { name: 'update_vendor_bank', desc: 'Change a vendor’s bank details.', write: true, on: false, appr: true }
+      ]
+    };
+  }
+  renderVals() {
+    var self = this;
+    var panel = this.state.panel || (this.props.panel ?? 'details');
+    var view = this.state.view;
+    var btn = function (on) { return 'width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:8px;cursor:pointer;color:#24272D;background:' + (on ? '#EBECEE' : 'transparent'); };
+    var I = {
+      tasks: 'M9 11l3 3 8-8M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9',
+      model: 'M12 2l9 5v10l-9 5-9-5V7zM12 22V12M21 7l-9 5-9-5',
+      pen: 'M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z',
+      files: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6',
+      tools: 'M3 7h18v13H3zM8 7V4h8v3M3 13h18',
+      link: 'M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7',
+      hand: 'M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8a8 8 0 0 0 16 0v-3a2 2 0 0 0-4 0',
+      clock: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
+      memory: 'M4 6h16v12H4zM8 6V3M16 6V3M8 21v-3M16 21v-3',
+      shield: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+      versions: 'M6 3v12M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 9a9 9 0 0 1-9 9',
+      advanced: 'M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6'
+    };
+    var tools = this.state.tools;
+    var on = tools.filter(function (t) { return t.on; }).length;
+    var G = function (label, rows) {
+      return { label: label, rows: rows.map(function (r, i) {
+        return {
+          label: r[0], value: r[1], icon: I[r[2]],
+          open: r[3] ? function () { self.setState({ view: r[3] }); } : function () {},
+          valueStyle: 'font-size:13px;white-space:nowrap;color:' + (r[4] || '#656A72'),
+          style: 'width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;background:transparent;border:0;color:#24272D;font:inherit;font-size:14px;cursor:pointer;' + (i < rows.length - 1 ? 'border-bottom:1px solid #ECEDEF' : '')
+        };
+      }) };
+    };
+    var groups = [
+      G('Work', [['Tasks', '2 tasks', 'tasks'], ['Model', 'Automatic', 'model']]),
+      G('Knows', [['Instructions', '', 'pen'], ['Files & sheets', '2 files', 'files']]),
+      G('Uses', [['Tools', String(on), 'tools', 'tools'], ['Connections', 'Expires in 3d', 'link', null, '#9A5F0C']]),
+      G('Rules', [['Always asks you', '1', 'hand'], ['Schedule', 'Mon–Fri, 8–19h', 'clock']]),
+      G('More', [['Memory', '90 days', 'memory'], ['Permissions', '', 'shield'], ['Versions', 'v7', 'versions'], ['Advanced', '', 'advanced']])
+    ];
+    var track = function (v) { return 'width:34px;height:20px;flex:none;padding:2px;box-sizing:border-box;display:flex;align-items:center;border:0;border-radius:999px;cursor:pointer;justify-content:' + (v ? 'flex-end' : 'flex-start') + ';background:' + (v ? '#24272D' : '#D5D7DB'); };
+    var setTool = function (i, key) {
+      return function () {
+        self.setState({ tools: self.state.tools.map(function (t, j) { if (j !== i) return t; var c = Object.assign({}, t); c[key] = !c[key]; return c; }) });
+      };
+    };
+    var saved = this.saved;
+    var dirty = tools.some(function (t, i) { return t.on !== saved[i][0] || t.appr !== saved[i][1]; });
+    var toolRows = tools.map(function (t, i) {
+      return {
+        name: t.name, desc: t.desc, isWrite: t.write,
+        rowStyle: 'display:flex;flex-direction:column;gap:6px;padding:12px 14px;' + (i < tools.length - 1 ? 'border-bottom:1px solid #ECEDEF;' : '') + (t.on ? '' : 'opacity:0.7'),
+        onAttr: t.on ? 'true' : 'false', onLabel: 'Enable ' + t.name, toggleOn: setTool(i, 'on'), onTrack: track(t.on),
+        apprAttr: t.appr ? 'true' : 'false', apprLabel: t.name + ' asks you before running', toggleAppr: setTool(i, 'appr'), apprTrack: track(t.appr),
+        knob: 'width:16px;height:16px;border-radius:999px;background:#FFFFFF;box-shadow:0 1px 2px rgba(36,39,45,0.2)'
+      };
+    });
+    var T = { done: ['#2E7D57', 'rgba(105,169,135,0.18)', 'M20 6L9 17l-5-5'], wait: ['#9A5F0C', 'rgba(216,154,60,0.18)', 'M12 7v5l3 2'] };
+    var steps = [
+      ['Plan · 3 steps', false, '0.2s', 'done', 'Find invoice, verify, request payment'],
+      ['search_invoices', true, '0.8s', 'done', '1 result returned'],
+      ['match_purchase_order', true, '0.4s', 'done', 'Matched PO-7781'],
+      ['create_payment', true, '—', 'wait', 'Waiting for approval']
+    ].map(function (s, i, all) {
+      var t = T[s[3]];
+      return {
+        name: s[0], dur: s[2], status: s[4], icon: t[2],
+        rowStyle: 'display:flex;gap:12px;padding:12px 14px;' + (i < all.length - 1 ? 'border-bottom:1px solid #ECEDEF' : ''),
+        markStyle: 'width:20px;height:20px;flex:none;display:grid;place-items:center;border-radius:999px;color:' + t[0] + ';background:' + t[1],
+        nameStyle: s[1] ? 'font-family:"Geist Mono",monospace;font-size:12px;font-weight:500' : 'font-size:13px;font-weight:500',
+        statusStyle: 'font-size:12px;color:' + (s[3] === 'wait' ? '#9A5F0C' : '#656A72')
+      };
+    });
+    return {
+      showDetails: panel === 'details', showActivity: panel === 'activity',
+      isRoot: view === 'root', isTools: view === 'tools',
+      detPressed: panel === 'details' ? 'true' : 'false', actPressed: panel === 'activity' ? 'true' : 'false',
+      detBtn: btn(panel === 'details'), actBtn: btn(panel === 'activity'),
+      toggleDetails: function () { self.setState({ panel: panel === 'details' ? 'none' : 'details', view: 'root' }); },
+      toggleActivity: function () { self.setState({ panel: panel === 'activity' ? 'none' : 'activity' }); },
+      back: function () { self.setState({ view: 'root' }); },
+      discard: function () { self.setState({ tools: self.state.tools.map(function (t, i) { return Object.assign({}, t, { on: saved[i][0], appr: saved[i][1] }); }) }); },
+      groups: groups, tools: toolRows, steps: steps, dirty: dirty
+    };
+  }
+}
+</script>
+</body>
+</html>

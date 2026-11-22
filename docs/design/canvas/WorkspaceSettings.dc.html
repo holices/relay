@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Relay — Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#3F7A5B}a:hover{color:#2C5A42}
+:focus-visible{outline:2px solid #69A987;outline-offset:2px}
+</style>
+</helmet>
+<div style="display: flex; flex-wrap: wrap; min-height: 1000px; background: #FFFFFF; color: #24272D; font-family: 'Geist', system-ui, sans-serif; font-size: 14px; line-height: 1.45">
+<dc-import name="Sidebar" active="settings" hint-size="248px,1000px"></dc-import>
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 40px 40px 56px; display: flex; justify-content: center">
+<div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 28px">
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -0.01em">Settings</h1>
+<p style="margin: 0; color: #656A72">Agent policies, workspace administration and your preferences for Acme Corporation.</p>
+</div>
+
+<label style="position: relative; display: flex; align-items: center">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search settings</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#656A72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; left: 12px"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+<input type="search" placeholder="Search settings" style="width: 100%; height: 40px; box-sizing: border-box; padding: 0 12px 0 36px; background: #FFFFFF; border: 1px solid #E1E2E5; border-radius: 8px; color: #24272D; font: inherit; font-size: 15px">
+</label>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<section style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-size: 13px; font-weight: 400; color: #656A72">{{g.label}}</h2>
+<div style="border: 1px solid #E6E7EA; border-radius: 10px; overflow: hidden">
+<sc-for list="{{g.rows}}" as="r" hint-placeholder-count="4">
+<a href="{{r.href}}" style="{{r.style}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.icon}}"></path></svg>
+<span style="flex: 1; display: flex; flex-direction: column; min-width: 0">
+<span style="font-weight: 500">{{r.label}}</span>
+<span style="font-size: 13px; color: #656A72">{{r.desc}}</span>
+</span>
+<span style="font-size: 13px; color: #656A72; white-space: nowrap">{{r.value}}</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#656A72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+</a>
+</sc-for>
+</div>
+</section>
+</sc-for>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var I = {
+      agents: 'M3 6h18M3 12h18M3 18h12',
+      approval: 'M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8a8 8 0 0 0 16 0v-3a2 2 0 0 0-4 0',
+      traces: 'M22 12h-4l-3 9L9 3l-3 9H2',
+      evals: 'M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10',
+      knowledge: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5',
+      analytics: 'M3 3v18h18M8 17v-5M13 17V8M18 17v-9',
+      general: 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6',
+      members: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+      security: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+      audit: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5',
+      retention: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2',
+      secrets: 'M21 2l-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zM15.5 7.5l3 3L22 7l-3-3',
+      profile: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+      bell: 'M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0',
+      appearance: 'M12 3a9 9 0 1 0 9 9c0-.5-.5-1-1-1h-3a3 3 0 0 1-3-3V5c0-.5-.5-2-2-2z'
+    };
+    var G = function (label, rows) {
+      return { label: label, rows: rows.map(function (r, i) {
+        return { label: r[0], desc: r[1], value: r[2], icon: I[r[3]], href: r[4] || '#',
+          style: 'display:flex;align-items:center;gap:14px;padding:12px 16px;color:#24272D;text-decoration:none;' + (i < rows.length - 1 ? 'border-bottom:1px solid #ECEDEF' : '') };
+      }) };
+    };
+    return {
+      groups: [
+        G('Agents', [
+          ['Approval policies', 'Which actions need a person to approve', '3 policies', 'approval']
+        ]),
+        G('Workspace', [
+          ['General', 'Name, region and defaults', 'Acme Corporation', 'general'],
+          ['Members & roles', 'Who can operate, configure and approve', '38 members', 'members'],
+          ['Security & policies', 'Agent policies and tool restrictions', '', 'security'],
+          ['Audit log', 'Every approval, change and access', '', 'audit'],
+          ['Data retention', 'How long runs and conversations are kept', '90 days', 'retention'],
+          ['Secrets', 'Credentials stored for connections', '12 secrets', 'secrets']
+        ]),
+        G('Personal', [
+          ['Profile', 'Name, email and sign-in', 'Ana Moreira', 'profile'],
+          ['Notifications', 'Approvals, failures and digests', 'Approvals only', 'bell'],
+          ['Appearance', 'Theme and density', 'Light', 'appearance']
+        ])
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
