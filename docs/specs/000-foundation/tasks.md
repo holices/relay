@@ -30,7 +30,7 @@
 
 ## M1 — Monorepo skeleton and spike (plan §15, R1–R2)
 
-### [ ] T002 · Root workspace
+### [x] T002 · Root workspace
 - **Refs:** FR-001, FR-003, FR-007, plan §2, §12
 - **Steps:**
   - **Root `package.json`:** `private`, `packageManager: pnpm@12.x`, `engines.node: ">=24 <25"`, and scripts `dev`, `check`, `bootstrap`, `db:*`, `test:e2e` (placeholders are fine for now).
